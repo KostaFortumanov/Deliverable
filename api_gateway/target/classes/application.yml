@@ -1,0 +1,26 @@
+jwtSecret: "deliverableSecret"
+
+eureka:
+    client:
+        fetch-registry: true
+        register-with-eureka: true
+        service-url:
+            defaultZone: http://eureka-server:8761/eureka/
+    instance:
+        hostname: api-gateway
+server:
+    port: 9191
+spring:
+    application:
+        name: API-GATEWAY
+
+    cloud:
+        gateway:
+            default-filters:
+                - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+            globalcors:
+                corsConfigurations:
+                    '[/**]':
+                        allowedOrigins: "*"
+                        allowedMethods: "*"
+                        allowedHeaders: "*"
